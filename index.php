@@ -7,5 +7,8 @@ if(!isset($_SESSION["username"])){
 <input type="password" id="p" placeholder="password" name="p"/>
 <input type="submit" value="Login"></form>';
 	}
-	else{echo "успех";}
+	else{
+		echo '<form method="POST" action="logout.php">
+		<input type="submit" value="Logout"></form>';
+	}
 ?>
