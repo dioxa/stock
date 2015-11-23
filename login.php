@@ -15,9 +15,15 @@ $stmt->execute();
 $numrows = $stmt->rowCount();
 
 if($numrows == 1){ 
-$_SESSION["username"] = $stmt->fetchColumn(0); $_SESSION["password"] = $stmt->fetchColumn(1);
+	$user_info = $stmt->fetch(PDO::FETCH_NUM);
+	$_SESSION["id"] = $user_info[0];
+	$_SESSION["username"] = $user_info[1]; 
+	$_SESSION["password"] = $user_info[2];
+	$PDO = null;
 header("location: index.php");
 }
- else {header("location: index.php");
+ else {
+	$PDO = null;
+	header("location: index.php");
  } 
  ?>
