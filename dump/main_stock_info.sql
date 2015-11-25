@@ -1,5 +1,3 @@
-CREATE DATABASE  IF NOT EXISTS `main` /*!40100 DEFAULT CHARACTER SET utf8 */;
-USE `main`;
 -- MySQL dump 10.13  Distrib 5.7.9, for Win64 (x86_64)
 --
 -- Host: 127.0.0.1    Database: main
@@ -25,11 +23,11 @@ DROP TABLE IF EXISTS `stock_info`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `stock_info` (
-  `stock_id` int(11) NOT NULL,
+  `subname` varchar(4) NOT NULL,
   `price` decimal(5,2) NOT NULL,
   `date` date NOT NULL,
-  KEY `stock_id` (`stock_id`),
-  CONSTRAINT `stock_id` FOREIGN KEY (`stock_id`) REFERENCES `stocks` (`id`)
+  KEY `subname` (`subname`),
+  CONSTRAINT `stock_info_ibfk_1` FOREIGN KEY (`subname`) REFERENCES `stocks` (`subname`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -39,6 +37,7 @@ CREATE TABLE `stock_info` (
 
 LOCK TABLES `stock_info` WRITE;
 /*!40000 ALTER TABLE `stock_info` DISABLE KEYS */;
+INSERT INTO `stock_info` VALUES ('AAPL',118.88,'2015-11-25'),('YNDX',17.09,'2015-11-25');
 /*!40000 ALTER TABLE `stock_info` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -51,4 +50,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-11-23 16:06:56
+-- Dump completed on 2015-11-25 18:18:50

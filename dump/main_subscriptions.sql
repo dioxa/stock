@@ -1,5 +1,3 @@
-CREATE DATABASE  IF NOT EXISTS `main` /*!40100 DEFAULT CHARACTER SET utf8 */;
-USE `main`;
 -- MySQL dump 10.13  Distrib 5.7.9, for Win64 (x86_64)
 --
 -- Host: 127.0.0.1    Database: main
@@ -26,11 +24,11 @@ DROP TABLE IF EXISTS `subscriptions`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `subscriptions` (
   `user_id` int(11) NOT NULL,
-  `stock_id` int(11) NOT NULL,
-  PRIMARY KEY (`user_id`,`stock_id`),
-  KEY `stock_id` (`stock_id`),
-  CONSTRAINT `subscriptions_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`),
-  CONSTRAINT `subscriptions_ibfk_2` FOREIGN KEY (`stock_id`) REFERENCES `stocks` (`id`)
+  `stock_subname` varchar(4) NOT NULL,
+  PRIMARY KEY (`user_id`,`stock_subname`),
+  KEY `stock_subname` (`stock_subname`),
+  CONSTRAINT `subscriptions_ibfk_1` FOREIGN KEY (`stock_subname`) REFERENCES `stocks` (`subname`),
+  CONSTRAINT `user_id` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -40,7 +38,7 @@ CREATE TABLE `subscriptions` (
 
 LOCK TABLES `subscriptions` WRITE;
 /*!40000 ALTER TABLE `subscriptions` DISABLE KEYS */;
-INSERT INTO `subscriptions` VALUES (1,2),(1,3);
+INSERT INTO `subscriptions` VALUES (1,'AAPL'),(1,'YNDX');
 /*!40000 ALTER TABLE `subscriptions` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -53,4 +51,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-11-23 16:06:57
+-- Dump completed on 2015-11-25 18:18:51
