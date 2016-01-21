@@ -3,6 +3,10 @@ class Route
 {
 	static function start()
 	{
+        require_once "check.php";
+        $check = new Check();
+        $check->start();
+
         $controller_name = 'Main';
         $action_name = 'index';
         $routes = explode('/', $_SERVER['REQUEST_URI']);
